@@ -1,0 +1,58 @@
+{
+  "Version": 1,
+  "Hash": "xInZPjSbqU4XNPBLNbq9y+o64PqHw01T0G+t1hHROm4=",
+  "Source": "eSya.ConfigPharmacy.WebAPI",
+  "BasePath": "_content/eSya.ConfigPharmacy.WebAPI",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "eSya.ConfigPharmacy.WebAPI\\wwwroot",
+      "Source": "eSya.ConfigPharmacy.WebAPI",
+      "ContentRoot": "D:\\Projects\\eSyaProjects2022\\eSya.ConfigPharmacy.WebAPI\\eSya.ConfigPharmacy.WebAPI\\eSya.ConfigPharmacy.WebAPI\\wwwroot\\",
+      "BasePath": "_content/eSya.ConfigPharmacy.WebAPI",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "D:\\Projects\\eSyaProjects2022\\eSya.ConfigPharmacy.WebAPI\\eSya.ConfigPharmacy.WebAPI\\eSya.ConfigPharmacy.WebAPI\\wwwroot\\Resources\\ar-EG.json",
+      "SourceId": "eSya.ConfigPharmacy.WebAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Projects\\eSyaProjects2022\\eSya.ConfigPharmacy.WebAPI\\eSya.ConfigPharmacy.WebAPI\\eSya.ConfigPharmacy.WebAPI\\wwwroot\\",
+      "BasePath": "_content/eSya.ConfigPharmacy.WebAPI",
+      "RelativePath": "Resources/ar-EG.json",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Resources\\ar-EG.json"
+    },
+    {
+      "Identity": "D:\\Projects\\eSyaProjects2022\\eSya.ConfigPharmacy.WebAPI\\eSya.ConfigPharmacy.WebAPI\\eSya.ConfigPharmacy.WebAPI\\wwwroot\\Resources\\en-US.json",
+      "SourceId": "eSya.ConfigPharmacy.WebAPI",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\Projects\\eSyaProjects2022\\eSya.ConfigPharmacy.WebAPI\\eSya.ConfigPharmacy.WebAPI\\eSya.ConfigPharmacy.WebAPI\\wwwroot\\",
+      "BasePath": "_content/eSya.ConfigPharmacy.WebAPI",
+      "RelativePath": "Resources/en-US.json",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Resources\\en-US.json"
+    }
+  ]
+}

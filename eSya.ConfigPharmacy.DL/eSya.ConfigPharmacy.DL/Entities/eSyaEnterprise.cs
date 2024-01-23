@@ -1,0 +1,328 @@
+﻿using System;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
+
+namespace eSya.ConfigPharmacy.DL.Entities
+{
+    public partial class eSyaEnterprise : DbContext
+    {
+        public static string _connString = "";
+        public eSyaEnterprise()
+        {
+        }
+
+        public eSyaEnterprise(DbContextOptions<eSyaEnterprise> options)
+            : base(options)
+        {
+        }
+
+        public virtual DbSet<GtEavncd> GtEavncds { get; set; } = null!;
+        public virtual DbSet<GtEcapcd> GtEcapcds { get; set; } = null!;
+        public virtual DbSet<GtEphdcp> GtEphdcps { get; set; } = null!;
+        public virtual DbSet<GtEphdfm> GtEphdfms { get; set; } = null!;
+        public virtual DbSet<GtEphdfr> GtEphdfrs { get; set; } = null!;
+        public virtual DbSet<GtEphdrc> GtEphdrcs { get; set; } = null!;
+        public virtual DbSet<GtEphgst> GtEphgsts { get; set; } = null!;
+        public virtual DbSet<GtEphmnf> GtEphmnfs { get; set; } = null!;
+        public virtual DbSet<GtEphmvl> GtEphmvls { get; set; } = null!;
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            if (!optionsBuilder.IsConfigured)
+            {
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer(_connString);
+            }
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<GtEavncd>(entity =>
+            {
+                entity.HasKey(e => e.VendorId);
+
+                entity.ToTable("GT_EAVNCD");
+
+                entity.Property(e => e.VendorId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("VendorID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.CreditPeriod).HasColumnType("numeric(3, 0)");
+
+                entity.Property(e => e.CreditType)
+                    .HasMaxLength(1)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.FormId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("FormID");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.VendorName).HasMaxLength(75);
+            });
+
+            modelBuilder.Entity<GtEcapcd>(entity =>
+            {
+                entity.HasKey(e => e.ApplicationCode)
+                    .HasName("PK_GT_ECAPCD_1");
+
+                entity.ToTable("GT_ECAPCD");
+
+                entity.Property(e => e.ApplicationCode).ValueGeneratedNever();
+
+                entity.Property(e => e.CodeDesc).HasMaxLength(50);
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.FormId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("FormID");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.ShortCode).HasMaxLength(15);
+            });
+
+            modelBuilder.Entity<GtEphdcp>(entity =>
+            {
+                entity.HasKey(e => new { e.CompositionId, e.ParameterId });
+
+                entity.ToTable("GT_EPHDCP");
+
+                entity.Property(e => e.CompositionId).HasColumnName("CompositionID");
+
+                entity.Property(e => e.ParameterId).HasColumnName("ParameterID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.FormId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("FormID");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.ParmDesc)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ParmPerc).HasColumnType("numeric(5, 2)");
+
+                entity.Property(e => e.ParmValue).HasColumnType("numeric(18, 6)");
+            });
+
+            modelBuilder.Entity<GtEphdfm>(entity =>
+            {
+                entity.HasKey(e => new { e.CompositionId, e.FormulationId, e.ManufacturerId });
+
+                entity.ToTable("GT_EPHDFM");
+
+                entity.Property(e => e.CompositionId).HasColumnName("CompositionID");
+
+                entity.Property(e => e.FormulationId).HasColumnName("FormulationID");
+
+                entity.Property(e => e.ManufacturerId).HasColumnName("ManufacturerID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.FormId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("FormID");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<GtEphdfr>(entity =>
+            {
+                entity.HasKey(e => new { e.CompositionId, e.FormulationId });
+
+                entity.ToTable("GT_EPHDFR");
+
+                entity.Property(e => e.CompositionId).HasColumnName("CompositionID");
+
+                entity.Property(e => e.FormulationId).HasColumnName("FormulationID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.FormId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("FormID");
+
+                entity.Property(e => e.FormulationDesc)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Hcpcscode)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("HCPCSCode");
+
+                entity.Property(e => e.Hsncode)
+                    .HasColumnType("numeric(8, 0)")
+                    .HasColumnName("HSNCode");
+
+                entity.Property(e => e.MethodOfAdministration)
+                    .HasMaxLength(15)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.Volume)
+                    .HasMaxLength(10)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<GtEphdrc>(entity =>
+            {
+                entity.HasKey(e => e.CompositionId);
+
+                entity.ToTable("GT_EPHDRC");
+
+                entity.Property(e => e.CompositionId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("CompositionID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.DrugCompDesc)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.DrugSchedule)
+                    .HasMaxLength(2)
+                    .IsUnicode(false)
+                    .IsFixedLength();
+
+                entity.Property(e => e.FormId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("FormID");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<GtEphgst>(entity =>
+            {
+                entity.HasKey(e => new { e.Hsncode, e.Gstperc, e.EffectiveFrom });
+
+                entity.ToTable("GT_EPHGST");
+
+                entity.Property(e => e.Hsncode)
+                    .HasColumnType("numeric(8, 0)")
+                    .HasColumnName("HSNCode");
+
+                entity.Property(e => e.Gstperc)
+                    .HasColumnType("numeric(5, 2)")
+                    .HasColumnName("GSTPerc");
+
+                entity.Property(e => e.EffectiveFrom).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.EffectiveTill).HasColumnType("datetime");
+
+                entity.Property(e => e.FormId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("FormID");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<GtEphmnf>(entity =>
+            {
+                entity.HasKey(e => e.ManufacturerId);
+
+                entity.ToTable("GT_EPHMNF");
+
+                entity.Property(e => e.ManufacturerId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ManufacturerID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.FormId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("FormID");
+
+                entity.Property(e => e.ManfShortName).HasMaxLength(10);
+
+                entity.Property(e => e.ManufacturerName).HasMaxLength(75);
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<GtEphmvl>(entity =>
+            {
+                entity.HasKey(e => e.ManufacturerId);
+
+                entity.ToTable("GT_EPHMVL");
+
+                entity.Property(e => e.ManufacturerId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("ManufacturerID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.FormId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("FormID");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.VendorId).HasColumnName("VendorID");
+            });
+
+            OnModelCreatingPartial(modelBuilder);
+        }
+
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
+    }
+}

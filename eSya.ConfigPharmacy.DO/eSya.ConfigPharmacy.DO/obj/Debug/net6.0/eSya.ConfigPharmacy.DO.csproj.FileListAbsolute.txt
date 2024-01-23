@@ -1,0 +1,11 @@
+D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.DO\eSya.ConfigPharmacy.DO\bin\Debug\net6.0\eSya.ConfigPharmacy.DO.deps.json
+D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.DO\eSya.ConfigPharmacy.DO\bin\Debug\net6.0\eSya.ConfigPharmacy.DO.dll
+D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.DO\eSya.ConfigPharmacy.DO\bin\Debug\net6.0\eSya.ConfigPharmacy.DO.pdb
+D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.DO\eSya.ConfigPharmacy.DO\obj\Debug\net6.0\eSya.ConfigPharmacy.DO.GeneratedMSBuildEditorConfig.editorconfig
+D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.DO\eSya.ConfigPharmacy.DO\obj\Debug\net6.0\eSya.ConfigPharmacy.DO.AssemblyInfoInputs.cache
+D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.DO\eSya.ConfigPharmacy.DO\obj\Debug\net6.0\eSya.ConfigPharmacy.DO.AssemblyInfo.cs
+D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.DO\eSya.ConfigPharmacy.DO\obj\Debug\net6.0\eSya.ConfigPharmacy.DO.csproj.CoreCompileInputs.cache
+D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.DO\eSya.ConfigPharmacy.DO\obj\Debug\net6.0\eSya.ConfigPharmacy.DO.dll
+D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.DO\eSya.ConfigPharmacy.DO\obj\Debug\net6.0\refint\eSya.ConfigPharmacy.DO.dll
+D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.DO\eSya.ConfigPharmacy.DO\obj\Debug\net6.0\eSya.ConfigPharmacy.DO.pdb
+D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.DO\eSya.ConfigPharmacy.DO\obj\Debug\net6.0\ref\eSya.ConfigPharmacy.DO.dll

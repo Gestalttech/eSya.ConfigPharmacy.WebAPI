@@ -1,0 +1,12 @@
+{
+  "W0201": "Manufacturer Name is already Exist",
+  "W0202": "Manufacturer Short Name is already Exist",
+  "W0203": "Not Exist",
+
+
+  "S0001": "Saved Sucessfully",
+  "S0002": "Updated Sucessfully",
+  "S0003": "Activated Successfully",
+  "S0004": "De Activated Successfully",
+  "S0005": "Deleted Sucessfully"
+}
