@@ -13,3 +13,4 @@ D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.IF\e
 D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.IF\eSya.ConfigPharmacy.IF\bin\Debug\net6.0\eSya.ConfigPharmacy.DO.pdb
 D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.IF\eSya.ConfigPharmacy.IF\obj\Debug\net6.0\eSya.ConfigPharmacy.IF.csproj.AssemblyReference.cache
 D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.IF\eSya.ConfigPharmacy.IF\obj\Debug\net6.0\eSya.ConfigPharmacy.IF.csproj.CopyComplete
+D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.IF\eSya.ConfigPharmacy.IF\obj\Debug\net6.0\eSya.ConfigPharmacy.IF.sourcelink.json

@@ -2,7 +2,13 @@
   "W0201": "Manufacturer Name is already Exist",
   "W0202": "Manufacturer Short Name is already Exist",
   "W0203": "Not Exist",
-
+  "W0209": "Composition not Exist",
+  "W0210": "Composition ID already  Exist",
+  "W0211": "Composition Description already Exist",
+  "W0212": "Drug Class Description already Exist",
+  "W0213": "Drug Class Not Exist",
+  "W0214": "Drug Therapeutic Description already Exist",
+  "W0215": "Drug Therapeutic not Exist",
 
   "S0001": "Saved Sucessfully",
   "S0002": "Updated Sucessfully",

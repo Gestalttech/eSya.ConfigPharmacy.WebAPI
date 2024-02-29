@@ -9,3 +9,4 @@ D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.DO\e
 D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.DO\eSya.ConfigPharmacy.DO\obj\Debug\net6.0\refint\eSya.ConfigPharmacy.DO.dll
 D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.DO\eSya.ConfigPharmacy.DO\obj\Debug\net6.0\eSya.ConfigPharmacy.DO.pdb
 D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.DO\eSya.ConfigPharmacy.DO\obj\Debug\net6.0\ref\eSya.ConfigPharmacy.DO.dll
+D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.DO\eSya.ConfigPharmacy.DO\obj\Debug\net6.0\eSya.ConfigPharmacy.DO.sourcelink.json

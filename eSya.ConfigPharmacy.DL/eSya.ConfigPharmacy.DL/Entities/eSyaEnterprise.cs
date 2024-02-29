@@ -19,11 +19,10 @@ namespace eSya.ConfigPharmacy.DL.Entities
 
         public virtual DbSet<GtEavncd> GtEavncds { get; set; } = null!;
         public virtual DbSet<GtEcapcd> GtEcapcds { get; set; } = null!;
+        public virtual DbSet<GtEphdco> GtEphdcos { get; set; } = null!;
         public virtual DbSet<GtEphdcp> GtEphdcps { get; set; } = null!;
-        public virtual DbSet<GtEphdfm> GtEphdfms { get; set; } = null!;
-        public virtual DbSet<GtEphdfr> GtEphdfrs { get; set; } = null!;
         public virtual DbSet<GtEphdrc> GtEphdrcs { get; set; } = null!;
-        public virtual DbSet<GtEphgst> GtEphgsts { get; set; } = null!;
+        public virtual DbSet<GtEphdtc> GtEphdtcs { get; set; } = null!;
         public virtual DbSet<GtEphmnf> GtEphmnfs { get; set; } = null!;
         public virtual DbSet<GtEphmvl> GtEphmvls { get; set; } = null!;
 
@@ -98,6 +97,32 @@ namespace eSya.ConfigPharmacy.DL.Entities
                 entity.Property(e => e.ShortCode).HasMaxLength(15);
             });
 
+            modelBuilder.Entity<GtEphdco>(entity =>
+            {
+                entity.HasKey(e => e.DrugClass);
+
+                entity.ToTable("GT_EPHDCO");
+
+                entity.Property(e => e.DrugClass).ValueGeneratedNever();
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.DrugClassDesc)
+                    .HasMaxLength(100)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.FormId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("FormID");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+            });
+
             modelBuilder.Entity<GtEphdcp>(entity =>
             {
                 entity.HasKey(e => new { e.CompositionId, e.ParameterId });
@@ -128,77 +153,6 @@ namespace eSya.ConfigPharmacy.DL.Entities
                 entity.Property(e => e.ParmPerc).HasColumnType("numeric(5, 2)");
 
                 entity.Property(e => e.ParmValue).HasColumnType("numeric(18, 6)");
-            });
-
-            modelBuilder.Entity<GtEphdfm>(entity =>
-            {
-                entity.HasKey(e => new { e.CompositionId, e.FormulationId, e.ManufacturerId });
-
-                entity.ToTable("GT_EPHDFM");
-
-                entity.Property(e => e.CompositionId).HasColumnName("CompositionID");
-
-                entity.Property(e => e.FormulationId).HasColumnName("FormulationID");
-
-                entity.Property(e => e.ManufacturerId).HasColumnName("ManufacturerID");
-
-                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
-
-                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
-
-                entity.Property(e => e.FormId)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("FormID");
-
-                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
-
-                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
-            });
-
-            modelBuilder.Entity<GtEphdfr>(entity =>
-            {
-                entity.HasKey(e => new { e.CompositionId, e.FormulationId });
-
-                entity.ToTable("GT_EPHDFR");
-
-                entity.Property(e => e.CompositionId).HasColumnName("CompositionID");
-
-                entity.Property(e => e.FormulationId).HasColumnName("FormulationID");
-
-                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
-
-                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
-
-                entity.Property(e => e.FormId)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("FormID");
-
-                entity.Property(e => e.FormulationDesc)
-                    .HasMaxLength(100)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.Hcpcscode)
-                    .HasMaxLength(10)
-                    .IsUnicode(false)
-                    .HasColumnName("HCPCSCode");
-
-                entity.Property(e => e.Hsncode)
-                    .HasColumnType("numeric(8, 0)")
-                    .HasColumnName("HSNCode");
-
-                entity.Property(e => e.MethodOfAdministration)
-                    .HasMaxLength(15)
-                    .IsUnicode(false);
-
-                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
-
-                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
-
-                entity.Property(e => e.Volume)
-                    .HasMaxLength(10)
-                    .IsUnicode(false);
             });
 
             modelBuilder.Entity<GtEphdrc>(entity =>
@@ -234,27 +188,21 @@ namespace eSya.ConfigPharmacy.DL.Entities
                 entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
             });
 
-            modelBuilder.Entity<GtEphgst>(entity =>
+            modelBuilder.Entity<GtEphdtc>(entity =>
             {
-                entity.HasKey(e => new { e.Hsncode, e.Gstperc, e.EffectiveFrom });
+                entity.HasKey(e => e.DrugTherapeutic);
 
-                entity.ToTable("GT_EPHGST");
+                entity.ToTable("GT_EPHDTC");
 
-                entity.Property(e => e.Hsncode)
-                    .HasColumnType("numeric(8, 0)")
-                    .HasColumnName("HSNCode");
-
-                entity.Property(e => e.Gstperc)
-                    .HasColumnType("numeric(5, 2)")
-                    .HasColumnName("GSTPerc");
-
-                entity.Property(e => e.EffectiveFrom).HasColumnType("datetime");
+                entity.Property(e => e.DrugTherapeutic).ValueGeneratedNever();
 
                 entity.Property(e => e.CreatedOn).HasColumnType("datetime");
 
                 entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
 
-                entity.Property(e => e.EffectiveTill).HasColumnType("datetime");
+                entity.Property(e => e.DrugTherapeuticDesc)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
 
                 entity.Property(e => e.FormId)
                     .HasMaxLength(10)

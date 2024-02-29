@@ -10,13 +10,20 @@ namespace eSya.ConfigPharmacy.DO
     {
         public int CompositionId { get; set; }
         public bool IsCombination { get; set; }
-        public string DrugCompDesc { get; set; } = null!;
+        public string DrugCompDesc { get; set; } 
         public int DrugClass { get; set; }
         public int TherapueticClass { get; set; }
         public bool AvailableAsGeneric { get; set; }
-        public string DrugSchedule { get; set; } = null!;
+        public string DrugSchedule { get; set; }
         public int PharmacyGroup { get; set; }
         public bool ActiveStatus { get; set; }
+        public string? DrugClassDesc { get; set; }
+        public string? TherapueticClassDesc { get; set; }
+        public string? PharmacyGroupDesc { get; set; }
+        public string FormID { get; set; }
+        public int UserID { get; set; }
+        public string TerminalID { get; set; }
+        public List<DO_eSyaParameter> l_composionparams { get; set; }
     }
     public class DO_eSyaParameter
     {
@@ -26,6 +33,6 @@ namespace eSya.ConfigPharmacy.DO
         public decimal ParmPerct { get; set; }
         public string? ParmDesc { get; set; }
         public bool ActiveStatus { get; set; }
-        public int CompositionId { get; set; }
+
     }
 }

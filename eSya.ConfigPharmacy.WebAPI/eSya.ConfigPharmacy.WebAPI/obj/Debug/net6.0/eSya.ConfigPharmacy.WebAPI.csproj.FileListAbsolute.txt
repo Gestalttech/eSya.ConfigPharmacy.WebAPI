@@ -277,3 +277,4 @@ D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.WebA
 D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.WebAPI\bin\Debug\net6.0\eSya.ConfigPharmacy.DO.pdb
 D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.WebAPI\bin\Debug\net6.0\eSya.ConfigPharmacy.IF.pdb
 D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.WebAPI\bin\Debug\net6.0\eSya.ConfigPharmacy.WebAPI.staticwebassets.runtime.json
+D:\Projects\eSyaProjects2022\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.WebAPI\eSya.ConfigPharmacy.WebAPI\obj\Debug\net6.0\eSya.ConfigPharmacy.WebAPI.sourcelink.json
