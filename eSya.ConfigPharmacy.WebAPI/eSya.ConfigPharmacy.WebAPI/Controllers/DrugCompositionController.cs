@@ -18,6 +18,28 @@ namespace eSya.ConfigPharmacy.WebAPI.Controllers
         }
         #region Drug Composition
         /// <summary>
+        /// Get Drug Class for dropdown.
+        /// UI Reffered - Composition, 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> GetActiveDrugClass()
+        {
+            var dclass = await _compositionRepository.GetActiveDrugClass();
+            return Ok(dclass);
+        }
+        /// <summary>
+        /// Get Drug Therapeutics for dropdown.
+        /// UI Reffered - Composition, 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> GetActiveDrugTherapeutics()
+        {
+            var Therap = await _compositionRepository.GetActiveDrugTherapeutics();
+            return Ok(Therap);
+        }
+        /// <summary>
         /// Get Drug Composition for Grid & JsTree.
         /// UI Reffered - Composition, 
         /// </summary>

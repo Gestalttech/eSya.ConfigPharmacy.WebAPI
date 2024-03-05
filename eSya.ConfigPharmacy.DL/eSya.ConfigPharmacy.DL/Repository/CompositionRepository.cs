@@ -19,6 +19,50 @@ namespace eSya.ConfigPharmacy.DL.Repository
             _localizer = localizer;
         }
         #region Drug Composition
+
+        public async Task<List<DO_DrugClass>> GetActiveDrugClass()
+        {
+            try
+            {
+                using (eSyaEnterprise db = new eSyaEnterprise())
+                {
+                    var ds = await db.GtEphdcos.Where(x=>x.ActiveStatus)
+                        .Select(d => new DO_DrugClass
+                        {
+                            DrugClass = d.DrugClass,
+                            DrugClassDesc = d.DrugClassDesc,
+                        }).OrderBy(o => o.DrugClassDesc).ToListAsync();
+
+                    return ds;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<List<DO_DrugTherapeutic>> GetActiveDrugTherapeutics()
+        {
+            try
+            {
+                using (eSyaEnterprise db = new eSyaEnterprise())
+                {
+                    var ds = await db.GtEphdtcs.Where(x=>x.ActiveStatus)
+                        .Select(t => new DO_DrugTherapeutic
+                        {
+                            DrugTherapeutic = t.DrugTherapeutic,
+                            DrugTherapeuticDesc = t.DrugTherapeuticDesc,
+                        }).OrderBy(o => o.DrugTherapeuticDesc).ToListAsync();
+
+                    return ds;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public async Task<List<DO_Composition>> GetCompositionByPrefix(string prefix)
         {
             try
@@ -27,35 +71,31 @@ namespace eSya.ConfigPharmacy.DL.Repository
                 {
 
                     var ds = db.GtEphdrcs
-                    .GroupJoin(db.GtEcapcds,
-                      g =>new { g.DrugClass },
-                      c =>new { DrugClass = c.ApplicationCode },
-                      (g, c) => new { g, c = c.FirstOrDefault() }
+                    .Join(db.GtEphdcos,
+                      g =>g.DrugClass ,
+                      c => c.DrugClass ,
+                      (g, c) => new { g, c }
                       )
-                    .GroupJoin(db.GtEcapcds,
-                      gc =>new { gc.g.TherapueticClass },
-                      p =>new { TherapueticClass = p.ApplicationCode },
-                      (gc, p) => new { gc, p = p.FirstOrDefault() }
-                      )
-                    .GroupJoin(db.GtEcapcds,
-                      gcc => new {gcc.gc.g.PharmacyGroup },
-                      pc => new { PharmacyGroup = pc.ApplicationCode },
-                      (gcc, pc) => new { gcc, pc = pc.FirstOrDefault() }
-                      )
-                    .Where(w => (w.gcc.gc.g.DrugCompDesc.ToUpper().StartsWith(prefix.ToUpper()) || prefix == "All"))
+                    .Join(db.GtEphdtcs,
+                      gc => gc.g.TherapueticClass,
+                      p => p.DrugTherapeutic,
+                      (gc, p) => new { gc, p })
+                    .Join(db.GtEcapcds,
+                      gcc => gcc.gc.g.PharmacyGroup ,
+                      pc =>  pc.ApplicationCode ,
+                      (gcc, pc) => new { gcc, pc})
+                    .Where(w => (w.gcc.gc.g.DrugCompDesc.ToUpper().StartsWith(prefix.ToUpper()) || prefix == ""))
                     .Select(r => new DO_Composition
                     {
                         CompositionId = r.gcc.gc.g.CompositionId,
                         IsCombination = r.gcc.gc.g.IsCombination,
                         DrugCompDesc = r.gcc.gc.g.DrugCompDesc,
                         DrugClass = r.gcc.gc.g.DrugClass,
-                        AvailableAsGeneric = r.gcc.gc.g.AvailableAsGeneric,
-                        DrugSchedule = r.gcc.gc.g.DrugSchedule,
                         TherapueticClass = r.gcc.gc.g.TherapueticClass,
                         PharmacyGroup= r.gcc.gc.g.PharmacyGroup,
                         ActiveStatus = r.gcc.gc.g.ActiveStatus,
-                        DrugClassDesc = r.gcc.gc.c.CodeDesc,
-                        TherapueticClassDesc = r.gcc.p.CodeDesc,
+                        DrugClassDesc = r.gcc.gc.c.DrugClassDesc,
+                        TherapueticClassDesc = r.gcc.p.DrugTherapeuticDesc,
                         PharmacyGroupDesc=r.pc.CodeDesc
                     }).OrderBy(o => o.DrugCompDesc).ToListAsync();
 
@@ -76,20 +116,20 @@ namespace eSya.ConfigPharmacy.DL.Repository
                 {
 
                     var ds = db.GtEphdrcs
-                   .GroupJoin(db.GtEcapcds,
-                     g => new { g.DrugClass },
-                     c => new { DrugClass = c.ApplicationCode },
-                     (g, c) => new { g, c = c.FirstOrDefault() }
+                   .Join(db.GtEphdcos,
+                     g => g.DrugClass ,
+                     c =>  c.DrugClass ,
+                     (g, c) => new { g, c }
                      )
-                   .GroupJoin(db.GtEcapcds,
-                     gc => new { gc.g.TherapueticClass },
-                     p => new { TherapueticClass = p.ApplicationCode },
-                     (gc, p) => new { gc, p = p.FirstOrDefault() }
+                   .Join(db.GtEphdtcs,
+                     gc =>  gc.g.TherapueticClass ,
+                     p =>  p.DrugTherapeutic ,
+                     (gc, p) => new { gc, p  }
                      )
-                   .GroupJoin(db.GtEcapcds,
-                     gcc => new { gcc.gc.g.PharmacyGroup },
-                     pc => new { PharmacyGroup = pc.ApplicationCode },
-                     (gcc, pc) => new { gcc, pc = pc.FirstOrDefault() }
+                   .Join(db.GtEcapcds,
+                     gcc =>  gcc.gc.g.PharmacyGroup ,
+                     pc => pc.ApplicationCode ,
+                     (gcc, pc) => new { gcc, pc  }
                      )
                    .Where(w => (w.gcc.gc.g.CompositionId== composId))
                    .Select(r => new DO_Composition
@@ -98,13 +138,11 @@ namespace eSya.ConfigPharmacy.DL.Repository
                        IsCombination = r.gcc.gc.g.IsCombination,
                        DrugCompDesc = r.gcc.gc.g.DrugCompDesc,
                        DrugClass = r.gcc.gc.g.DrugClass,
-                       AvailableAsGeneric = r.gcc.gc.g.AvailableAsGeneric,
-                       DrugSchedule = r.gcc.gc.g.DrugSchedule,
                        TherapueticClass = r.gcc.gc.g.TherapueticClass,
                        PharmacyGroup = r.gcc.gc.g.PharmacyGroup,
                        ActiveStatus = r.gcc.gc.g.ActiveStatus,
-                       DrugClassDesc = r.gcc.gc.c.CodeDesc,
-                       TherapueticClassDesc = r.gcc.p.CodeDesc,
+                       DrugClassDesc = r.gcc.gc.c.DrugClassDesc,
+                       TherapueticClassDesc = r.gcc.p.DrugTherapeuticDesc,
                        PharmacyGroupDesc = r.pc.CodeDesc,
                        l_composionparams = db.GtEphdcps.Where(h => h.CompositionId == composId)
                        .Select(p => new DO_eSyaParameter
@@ -147,8 +185,6 @@ namespace eSya.ConfigPharmacy.DL.Repository
                                 DrugCompDesc = obj.DrugCompDesc,
                                 DrugClass=obj.DrugClass,
                                 TherapueticClass=obj.TherapueticClass,
-                                AvailableAsGeneric=obj.AvailableAsGeneric,
-                                DrugSchedule=obj.DrugSchedule,
                                 PharmacyGroup=obj.PharmacyGroup,
                                 ActiveStatus = obj.ActiveStatus,
                                 FormId = obj.FormID,
@@ -163,7 +199,7 @@ namespace eSya.ConfigPharmacy.DL.Repository
 
                                 var _parm = new GtEphdcp
                                 {
-                                    CompositionId = obj.CompositionId,
+                                    CompositionId = maxcompId,
                                     ParameterId = ip.ParameterID,
                                     ParmPerc = 0,
                                     ParmDesc = null,
@@ -221,8 +257,6 @@ namespace eSya.ConfigPharmacy.DL.Repository
                             _comp.DrugCompDesc = obj.DrugCompDesc;
                             _comp.DrugClass = obj.DrugClass;
                             _comp.TherapueticClass = obj.TherapueticClass;
-                            _comp.AvailableAsGeneric = obj.AvailableAsGeneric;
-                            _comp.DrugSchedule = obj.DrugSchedule;
                             _comp.PharmacyGroup = obj.PharmacyGroup;
                             _comp.ActiveStatus = obj.ActiveStatus;
                             _comp.ModifiedBy = obj.UserID;
