@@ -8,6 +8,7 @@ namespace eSya.ConfigPharmacy.DL.Entities
     public partial class eSyaEnterprise : DbContext
     {
         public static string _connString = "";
+
         public eSyaEnterprise()
         {
         }
