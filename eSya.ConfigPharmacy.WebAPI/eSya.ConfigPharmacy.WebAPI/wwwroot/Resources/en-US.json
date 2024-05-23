@@ -9,6 +9,8 @@
   "W0213": "Drug Class Not Exist",
   "W0214": "Drug Therapeutic Description already Exist",
   "W0215": "Drug Therapeutic not Exist",
+  "W0216": "Formulation ID already Exist",
+  "W0217": "Formulation not Exist",
 
   "S0001": "Saved Sucessfully",
   "S0002": "Updated Sucessfully",

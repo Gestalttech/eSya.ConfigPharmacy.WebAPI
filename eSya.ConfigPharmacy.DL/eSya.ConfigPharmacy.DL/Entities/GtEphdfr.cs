@@ -10,9 +10,7 @@ namespace eSya.ConfigPharmacy.DL.Entities
         public string FormulationDesc { get; set; } = null!;
         public int DrugForm { get; set; }
         public string? Volume { get; set; }
-        public string MethodOfAdministration { get; set; } = null!;
-        public string Hcpcscode { get; set; } = null!;
-        public decimal Hsncode { get; set; }
+        public int MethodOfAdministration { get; set; }
         public bool ActiveStatus { get; set; }
         public string FormId { get; set; } = null!;
         public int CreatedBy { get; set; }

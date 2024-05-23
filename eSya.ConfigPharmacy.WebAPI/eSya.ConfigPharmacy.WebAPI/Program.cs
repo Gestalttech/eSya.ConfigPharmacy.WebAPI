@@ -51,6 +51,7 @@ builder.Services.AddScoped<IManufacturerRepository, ManufacturerRepository>();
 builder.Services.AddScoped<IDrugClassRepository, DrugClassRepository>();
 builder.Services.AddScoped<IVendorRepository, VendorRepository>();
 builder.Services.AddScoped<ICompositionRepository, CompositionRepository>();
+builder.Services.AddScoped<IDrugFormulationRepository, DrugFormulationRepository>();
 builder.Services.AddScoped<ICommonDataRepository, CommonDataRepository>();
 
 builder.Services.AddSingleton<IStringLocalizerFactory, JsonStringLocalizerFactory>();
