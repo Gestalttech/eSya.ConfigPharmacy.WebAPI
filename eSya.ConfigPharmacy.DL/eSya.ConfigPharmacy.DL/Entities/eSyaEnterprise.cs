@@ -22,6 +22,7 @@ namespace eSya.ConfigPharmacy.DL.Entities
         public virtual DbSet<GtEcapcd> GtEcapcds { get; set; } = null!;
         public virtual DbSet<GtEphdco> GtEphdcos { get; set; } = null!;
         public virtual DbSet<GtEphdcp> GtEphdcps { get; set; } = null!;
+        public virtual DbSet<GtEphdfm> GtEphdfms { get; set; } = null!;
         public virtual DbSet<GtEphdfp> GtEphdfps { get; set; } = null!;
         public virtual DbSet<GtEphdfr> GtEphdfrs { get; set; } = null!;
         public virtual DbSet<GtEphdrc> GtEphdrcs { get; set; } = null!;
@@ -156,6 +157,32 @@ namespace eSya.ConfigPharmacy.DL.Entities
                 entity.Property(e => e.ParmPerc).HasColumnType("numeric(5, 2)");
 
                 entity.Property(e => e.ParmValue).HasColumnType("numeric(18, 6)");
+            });
+
+            modelBuilder.Entity<GtEphdfm>(entity =>
+            {
+                entity.HasKey(e => new { e.CompositionId, e.FormulationId, e.ManufacturerId });
+
+                entity.ToTable("GT_EPHDFM");
+
+                entity.Property(e => e.CompositionId).HasColumnName("CompositionID");
+
+                entity.Property(e => e.FormulationId).HasColumnName("FormulationID");
+
+                entity.Property(e => e.ManufacturerId).HasColumnName("ManufacturerID");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.FormId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("FormID");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
             });
 
             modelBuilder.Entity<GtEphdfp>(entity =>

@@ -259,5 +259,142 @@ namespace eSya.ConfigPharmacy.DL.Repository
             }
         }
         #endregion
+
+        #region Map Formulation to Manufacturer
+        public async Task<List<DO_DrugFormulation>> GetActiveFormulations()
+        {
+            try
+            {
+                using (eSyaEnterprise db = new eSyaEnterprise())
+                {
+                    var ds = db.GtEphdfrs.Where(x => x.ActiveStatus)
+                    .Select(f => new DO_DrugFormulation
+                    {
+                        FormulationId = f.FormulationId,
+                        FormulationDesc = f.FormulationDesc,
+                    }).OrderBy(o => o.FormulationDesc).ToListAsync();
+
+                    return await ds;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<DO_Composition> GetCompositionbyFormulationID(int formulationId)
+        {
+            try
+            {
+                using (eSyaEnterprise db = new eSyaEnterprise())
+                {
+                    var ds = db.GtEphdfrs
+                    .Join(db.GtEphdrcs,
+                      g => g.CompositionId,
+                      c => c.CompositionId,
+                      (g, c) => new { g, c })
+                    .Where(w => (w.g.FormulationId==formulationId))
+                    .Select(f => new DO_Composition
+                    {
+                        CompositionId = f.g.CompositionId,
+                        DrugCompDesc = f.c.DrugCompDesc,
+                    }).FirstOrDefaultAsync();
+
+                    return await ds;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public async Task<List<DO_MapFormulationManufacturer>> GetLinkedManufacturerwithFormulation(int formulationId,int compositionId)
+        {
+            try
+            {
+                using (var db = new eSyaEnterprise())
+                {
+                    var ds = await db.GtEphmnfs.Where(x => x.ActiveStatus == true)
+                   .GroupJoin(db.GtEphdfms.Where(w => w.FormulationId == formulationId && w.CompositionId==compositionId),
+                     d => d.ManufacturerId,
+                     l => l.ManufacturerId,
+                    (f, m) => new { f, m })
+                   .SelectMany(z => z.m.DefaultIfEmpty(),
+                    (a, b) => new DO_MapFormulationManufacturer
+                    {
+                        ManufacturerId =a.f.ManufacturerId,
+                        ManufacturerName=a.f.ManufacturerName,
+                        FormulationId = formulationId,
+                        CompositionId =compositionId,
+                        ActiveStatus = b == null ? false : b.ActiveStatus
+                    }).ToListAsync();
+                    var distManufact = ds.GroupBy(x => new { x.ManufacturerId, x.FormulationId, x.CompositionId })
+                       .Select(y => y.First());
+                    return distManufact.ToList();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public async Task<DO_ReturnParameter> InsertOrUpdateManufacturerLinkwithFormulation(DO_MapFormulationManufacturer obj)
+        {
+            using (eSyaEnterprise db = new eSyaEnterprise())
+            {
+                using (var dbContext = db.Database.BeginTransaction())
+                {
+                    try
+                    {
+
+
+                        foreach (var f in obj.manfctlist)
+                        {
+                            var manfc = db.GtEphdfms.Where(x => x.FormulationId ==f.FormulationId && x.CompositionId==f.CompositionId && x.ManufacturerId==f.ManufacturerId).FirstOrDefault();
+                            if (manfc != null)
+                            {
+
+                                manfc.ActiveStatus = f.ActiveStatus;
+                                manfc.ModifiedBy = f.UserID;
+                                manfc.ModifiedOn = System.DateTime.Now;
+                                manfc.ModifiedTerminal = f.TerminalID;
+
+                            }
+                            else
+                            {
+
+                                var mapmanufct = new GtEphdfm
+                                {
+                                    FormulationId=f.FormulationId,
+                                    CompositionId=f.CompositionId,
+                                    ManufacturerId = f.ManufacturerId,
+                                    ActiveStatus = f.ActiveStatus,
+                                    CreatedBy = obj.UserID,
+                                    FormId = obj.FormID,
+                                    CreatedOn = System.DateTime.Now,
+                                    CreatedTerminal = obj.TerminalID
+                                };
+                                db.GtEphdfms.Add(mapmanufct);
+
+
+                            }
+                        }
+                        await db.SaveChangesAsync();
+                        dbContext.Commit();
+                        return new DO_ReturnParameter() { Status = true, StatusCode = "S0001", Message = string.Format(_localizer[name: "S0001"]) };
+
+                    }
+                    catch (Exception ex)
+                    {
+                        dbContext.Rollback();
+                        return new DO_ReturnParameter() { Status = false, Message = ex.Message };
+                    }
+                }
+            }
+        }
+        #endregion
     }
 }

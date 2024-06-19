@@ -16,5 +16,12 @@ namespace eSya.ConfigPharmacy.IF
         Task<DO_ReturnParameter> InsertIntoDrugFormulation(DO_DrugFormulation obj);
         Task<DO_ReturnParameter> UpdateDrugFormulation(DO_DrugFormulation obj);
         #endregion
+
+        #region Map Formulation to Manufacturer
+        Task<List<DO_DrugFormulation>> GetActiveFormulations();
+        Task<DO_Composition> GetCompositionbyFormulationID(int formulationId);
+        Task<List<DO_MapFormulationManufacturer>> GetLinkedManufacturerwithFormulation(int formulationId, int compositionId);
+        Task<DO_ReturnParameter> InsertOrUpdateManufacturerLinkwithFormulation(DO_MapFormulationManufacturer obj);
+        #endregion
     }
 }

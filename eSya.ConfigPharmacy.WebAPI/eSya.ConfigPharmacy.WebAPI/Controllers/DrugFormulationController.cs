@@ -76,5 +76,52 @@ namespace eSya.ConfigPharmacy.WebAPI.Controllers
 
 
         #endregion
+
+        #region Map Formulation to Manufacturer
+        /// <summary>
+        /// Get Active Formulation for drop down.
+        /// UI Reffered -  Map Formulation to Manufacturer
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> GetActiveFormulations()
+        {
+            var formu = await _drugFormulationRepository.GetActiveFormulations();
+            return Ok(formu);
+        }
+        /// <summary>
+        /// Get Composition by Formulation ID.
+        /// UI Reffered - Map Formulation to Manufacturer
+        /// </summary>
+        /// <returns>composId</returns>
+        [HttpGet]
+        public async Task<IActionResult> GetCompositionbyFormulationID(int formulationId)
+        {
+            var comp = await _drugFormulationRepository.GetCompositionbyFormulationID(formulationId);
+            return Ok(comp);
+        }
+        /// <summary>
+        /// Get Drug Manufacturer with Formulation
+        /// UI Reffered - Map Formulation to Manufacturer, 
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public async Task<IActionResult> GetLinkedManufacturerwithFormulation(int formulationId, int compositionId)
+        {
+            var mapfm = await _drugFormulationRepository.GetLinkedManufacturerwithFormulation(formulationId, compositionId);
+            return Ok(mapfm);
+        }
+
+        /// <summary>
+        /// Insert into Manufacturer with Formulation Table
+        /// UI Reffered - Map Formulation to Manufacturer,
+        /// </summary>
+        [HttpPost]
+        public async Task<IActionResult> InsertOrUpdateManufacturerLinkwithFormulation(DO_MapFormulationManufacturer obj)
+        {
+            var msg = await _drugFormulationRepository.InsertOrUpdateManufacturerLinkwithFormulation(obj);
+            return Ok(msg);
+        }
+        #endregion
     }
 }
