@@ -18,7 +18,7 @@ namespace eSya.ConfigPharmacy.IF
         #endregion
 
         #region Map Formulation to Manufacturer
-        Task<List<DO_DrugFormulation>> GetActiveFormulations();
+        Task<List<DO_DrugFormulation>> GetActiveFormulations(string prefix);
         Task<DO_Composition> GetCompositionbyFormulationID(int formulationId);
         Task<List<DO_MapFormulationManufacturer>> GetLinkedManufacturerwithFormulation(int formulationId, int compositionId);
         Task<DO_ReturnParameter> InsertOrUpdateManufacturerLinkwithFormulation(DO_MapFormulationManufacturer obj);

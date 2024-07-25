@@ -84,9 +84,9 @@ namespace eSya.ConfigPharmacy.WebAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IActionResult> GetActiveFormulations()
+        public async Task<IActionResult> GetActiveFormulations(string prefix)
         {
-            var formu = await _drugFormulationRepository.GetActiveFormulations();
+            var formu = await _drugFormulationRepository.GetActiveFormulations(prefix);
             return Ok(formu);
         }
         /// <summary>

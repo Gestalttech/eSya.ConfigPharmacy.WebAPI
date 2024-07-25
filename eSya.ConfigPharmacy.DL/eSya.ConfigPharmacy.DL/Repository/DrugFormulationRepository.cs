@@ -261,13 +261,13 @@ namespace eSya.ConfigPharmacy.DL.Repository
         #endregion
 
         #region Map Formulation to Manufacturer
-        public async Task<List<DO_DrugFormulation>> GetActiveFormulations()
+        public async Task<List<DO_DrugFormulation>> GetActiveFormulations(string prefix)
         {
             try
             {
                 using (eSyaEnterprise db = new eSyaEnterprise())
                 {
-                    var ds = db.GtEphdfrs.Where(x => x.ActiveStatus)
+                    var ds = db.GtEphdfrs.Where(x => x.ActiveStatus && x.FormulationDesc.ToUpper().StartsWith(prefix.ToUpper()) || prefix == "")
                     .Select(f => new DO_DrugFormulation
                     {
                         FormulationId = f.FormulationId,
