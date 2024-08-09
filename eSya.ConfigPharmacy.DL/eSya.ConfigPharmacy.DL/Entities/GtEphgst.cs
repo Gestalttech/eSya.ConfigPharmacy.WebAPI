@@ -8,6 +8,7 @@ namespace eSya.ConfigPharmacy.DL.Entities
         public decimal Hsncode { get; set; }
         public decimal Gstperc { get; set; }
         public DateTime EffectiveFrom { get; set; }
+        public decimal Cessperc { get; set; }
         public DateTime? EffectiveTill { get; set; }
         public bool ActiveStatus { get; set; }
         public string FormId { get; set; } = null!;

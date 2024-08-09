@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("eSya.ConfigPharmacy.IF")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ce91116d970ef8571b1618b36403a3666063efb8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a5bb6008d50db7c7e99fbf3c58b04e0282367328")]
 [assembly: System.Reflection.AssemblyProductAttribute("eSya.ConfigPharmacy.IF")]
 [assembly: System.Reflection.AssemblyTitleAttribute("eSya.ConfigPharmacy.IF")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

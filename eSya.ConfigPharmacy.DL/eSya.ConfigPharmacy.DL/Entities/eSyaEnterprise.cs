@@ -27,6 +27,7 @@ namespace eSya.ConfigPharmacy.DL.Entities
         public virtual DbSet<GtEphdfr> GtEphdfrs { get; set; } = null!;
         public virtual DbSet<GtEphdrc> GtEphdrcs { get; set; } = null!;
         public virtual DbSet<GtEphdtc> GtEphdtcs { get; set; } = null!;
+        public virtual DbSet<GtEphgst> GtEphgsts { get; set; } = null!;
         public virtual DbSet<GtEphmnf> GtEphmnfs { get; set; } = null!;
         public virtual DbSet<GtEphmvl> GtEphmvls { get; set; } = null!;
 
@@ -294,6 +295,42 @@ namespace eSya.ConfigPharmacy.DL.Entities
                 entity.Property(e => e.DrugTherapeuticDesc)
                     .HasMaxLength(50)
                     .IsUnicode(false);
+
+                entity.Property(e => e.FormId)
+                    .HasMaxLength(10)
+                    .IsUnicode(false)
+                    .HasColumnName("FormID");
+
+                entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<GtEphgst>(entity =>
+            {
+                entity.HasKey(e => new { e.Hsncode, e.Gstperc, e.EffectiveFrom });
+
+                entity.ToTable("GT_EPHGST");
+
+                entity.Property(e => e.Hsncode)
+                    .HasColumnType("numeric(8, 0)")
+                    .HasColumnName("HSNCode");
+
+                entity.Property(e => e.Gstperc)
+                    .HasColumnType("numeric(5, 2)")
+                    .HasColumnName("GSTPerc");
+
+                entity.Property(e => e.EffectiveFrom).HasColumnType("datetime");
+
+                entity.Property(e => e.Cessperc)
+                    .HasColumnType("numeric(5, 2)")
+                    .HasColumnName("CESSPerc");
+
+                entity.Property(e => e.CreatedOn).HasColumnType("datetime");
+
+                entity.Property(e => e.CreatedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.EffectiveTill).HasColumnType("datetime");
 
                 entity.Property(e => e.FormId)
                     .HasMaxLength(10)

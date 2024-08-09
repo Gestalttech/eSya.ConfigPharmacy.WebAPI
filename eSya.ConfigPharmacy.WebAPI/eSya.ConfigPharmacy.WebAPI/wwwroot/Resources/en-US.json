@@ -11,6 +11,7 @@
   "W0215": "Drug Therapeutic not Exist",
   "W0216": "Formulation ID already Exist",
   "W0217": "Formulation not Exist",
+  "W0218": "New Effective From Date can't be less than the current Effective From Date",
 
   "S0001": "Saved Sucessfully",
   "S0002": "Updated Sucessfully",
