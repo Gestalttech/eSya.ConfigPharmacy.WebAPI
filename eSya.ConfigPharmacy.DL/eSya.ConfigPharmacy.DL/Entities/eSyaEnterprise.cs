@@ -8,7 +8,6 @@ namespace eSya.ConfigPharmacy.DL.Entities
     public partial class eSyaEnterprise : DbContext
     {
         public static string _connString = "";
-
         public eSyaEnterprise()
         {
         }
@@ -71,6 +70,8 @@ namespace eSya.ConfigPharmacy.DL.Entities
                 entity.Property(e => e.ModifiedOn).HasColumnType("datetime");
 
                 entity.Property(e => e.ModifiedTerminal).HasMaxLength(50);
+
+                entity.Property(e => e.RejectionReason).HasMaxLength(250);
 
                 entity.Property(e => e.VendorName).HasMaxLength(75);
             });
